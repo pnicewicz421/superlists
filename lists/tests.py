@@ -3,6 +3,7 @@ from django.test import TestCase
 from django.http import HttpRequest
 from django.template.loader import render_to_string
 
+
 from lists.models import Item
 
 from lists.views import home_page
@@ -60,7 +61,9 @@ class homePageTest(TestCase):
 		Item.objects.create(text='itemey 2')
 		
 		request = HttpRequest()
-		request.method = 'POST'
+		#request.method = 'POST'
+		#request.POST['item_text'] = 'A new list item'
+		
 		response = home_page(request)
 		
 		self.assertIn('itemey 1', response.content.decode())
