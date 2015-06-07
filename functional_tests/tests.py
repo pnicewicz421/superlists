@@ -56,7 +56,7 @@ class NewVisitorTest(LiveServerTestCase):
 		
 		##new, browser, so that cookies are not stored
 		self.browser.quit()
-		self.browser = webdriver.Firefox()
+		self.browse
 		
 		#Francis visits the home page. No sign of Edith's list.
 		self.browser.get(self.live_server_url)
