@@ -1,6 +1,7 @@
 from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+#from django_liveserver.testcases import LiveServerTestCase
 
 import unittest
 import test
@@ -13,7 +14,6 @@ class NewVisitorTest(LiveServerTestCase):
 		self.browser.implicitly_wait(3)
 		
 	def tearDown(self):
-		pass
 		self.browser.quit()
 		
 	def check_for_row_in_list_table(self, row_text):
@@ -37,10 +37,12 @@ class NewVisitorTest(LiveServerTestCase):
 			'Enter a to-do item'
 		)
 		
+		print ("Before Enter, Current browser URL: ", self.browser.current_url)
 		#Enter "buy peacock feathers" to the input field and send
 		inputbox.send_keys("Buy peacock feathers")
 		inputbox.send_keys(Keys.ENTER)
 		edith_list_url = self.browser.current_url
+		print ("After Enter, Current browser URL: ", self.browser.current_url)
 		self.assertRegex(edith_list_url, '/lists/.+')
 		self.check_for_row_in_list_table('1: Buy peacock feathers')
 		
@@ -49,14 +51,14 @@ class NewVisitorTest(LiveServerTestCase):
 		inputbox.send_keys(Keys.ENTER)
 		
 		#After a refresh, make sure that that input now appears in the row in the table
-		self.check_for_row_in_list_table('1: Buy peacock feathers')
 		self.check_for_row_in_list_table('2: Use peacock feathers to make a fly')
+		self.check_for_row_in_list_table('1: Buy peacock feathers')
 		
 		#Now a new user comes to the site
 		
 		##new, browser, so that cookies are not stored
 		self.browser.quit()
-		self.browse
+		self.browser = webdriver.Firefox()
 		
 		#Francis visits the home page. No sign of Edith's list.
 		self.browser.get(self.live_server_url)
@@ -71,7 +73,7 @@ class NewVisitorTest(LiveServerTestCase):
 		
 		#Francis gets his own URL
 		francis_list_url = self.browser.current_url
-		self.assertRegEx(francis_list_irl, 'lists/.+')
+		self.assertRegex(francis_list_url, 'lists/.+')
 		self.assertNotEqual(francis_list_url, edith_list_url)
 		
 		#No trace of Edith's list

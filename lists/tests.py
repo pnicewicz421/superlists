@@ -10,9 +10,9 @@ from lists.views import home_page
 
 class homePageTest(TestCase):
 	
-	def test_root_url_resolvers_to_home_page_view(self):
-		found = resolve('/')
-		self.assertEqual(found.func, home_page)
+	#def test_root_url_resolvers_to_home_page_view(self):
+	#	found = resolve('/')
+	#	self.assertEqual(found.func, home_page)
 		
 	def test_home_page_returns_correct_html(self):		
 		request = HttpRequest()
@@ -60,7 +60,7 @@ class ListViewTest(TestCase):
 
 	def test_uses_list_template(self):
 		response = self.client.get('/lists/the-only-list-in-the-world/')
-		#self.assertTemplateUsed(response, 'list.html')
+		self.assertTemplateUsed(response, 'list.html')
 	
 	def test_displays_all_items(self):
 		Item.objects.create(text='itemey 1')
