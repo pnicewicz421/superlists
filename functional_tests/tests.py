@@ -49,6 +49,7 @@ class NewVisitorTest(LiveServerTestCase):
 		inputbox = self.browser.find_element_by_id('id_new_item')
 		inputbox.send_keys("Use peacock feathers to make a fly")
 		inputbox.send_keys(Keys.ENTER)
+		print ("After 2nd Enter, Current browser URL: ", self.browser.current_url)
 		
 		#After a refresh, make sure that that input now appears in the row in the table
 		self.check_for_row_in_list_table('2: Use peacock feathers to make a fly')
