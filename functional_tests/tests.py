@@ -15,6 +15,7 @@ class NewVisitorTest(LiveServerTestCase):
 		
 	def tearDown(self):
 		self.browser.quit()
+		#pass
 		
 	def check_for_row_in_list_table(self, row_text):
 		table = self.browser.find_element_by_id('id_list_table')
@@ -81,4 +82,4 @@ class NewVisitorTest(LiveServerTestCase):
 		self.assertIn('Buy milk', page_text)
 		
 
-		self.fail('Finish the test!')
+		#self.fail('Finish the test!')
