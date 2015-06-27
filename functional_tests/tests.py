@@ -1,4 +1,4 @@
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 #from django_liveserver.testcases import LiveServerTestCase
@@ -7,7 +7,7 @@ import unittest
 import test
 import time
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
 
 	def setUp(self):
 		self.browser = webdriver.Firefox()
@@ -42,6 +42,7 @@ class NewVisitorTest(LiveServerTestCase):
 		inputbox.send_keys("Buy peacock feathers")
 		inputbox.send_keys(Keys.ENTER)
 		edith_list_url = self.browser.current_url
+		#print ("Edith's URL: %s" % edith_list_url)
 		self.assertRegex(edith_list_url, '/lists/.+')
 		self.check_for_row_in_list_table('1: Buy peacock feathers')
 		
