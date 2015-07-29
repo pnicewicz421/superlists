@@ -1,9 +1,6 @@
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 
-import unittest
-import test
-import time
 import sys
 
 class FunctionalTest(StaticLiveServerTestCase):
