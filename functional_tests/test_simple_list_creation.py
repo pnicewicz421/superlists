@@ -4,6 +4,8 @@ from selenium.webdriver.common.keys import Keys
 
 class NewVisitorTest(FunctionalTest):
 	def test_can_start_a_list_and_retrieve_it_later(self):
+		inputbox = self.get_item_input_box()
+		
 		# Open webpage
 		self.browser.get(self.server_url)
 		
@@ -13,7 +15,6 @@ class NewVisitorTest(FunctionalTest):
 		self.assertIn('To-Do', header_text)
 		
 		#Make sure that inputbox 'placeholder' attribute is equal to "Enter a to-do item"
-		inputbox = self.browser.find_element_by_id('id_new_item')
 		self.assertEqual(
 			inputbox.get_attribute('placeholder'),
 			'Enter a to-do item'
@@ -27,7 +28,6 @@ class NewVisitorTest(FunctionalTest):
 		self.assertRegex(edith_list_url, '/lists/.+')
 		self.check_for_row_in_list_table('1: Buy peacock feathers')
 		
-		inputbox = self.browser.find_element_by_id('id_new_item')
 		inputbox.send_keys("Use peacock feathers to make a fly")
 		inputbox.send_keys(Keys.ENTER)
 
@@ -49,7 +49,6 @@ class NewVisitorTest(FunctionalTest):
 		self.assertNotIn('make a fly', page_text)
 		
 		#Francis' list
-		inputbox = self.browser.find_element_by_id('id_new_item')
 		inputbox.send_keys('Buy milk')
 		inputbox.send_keys(Keys.ENTER)
 		
